@@ -1,0 +1,357 @@
+/* =====================================
+   OBSIDIAN TASK DASHBOARD
+   Kanban-style layout for Tasks queries
+   ===================================== */
+
+/* Only style notes with cssclasses: task-dashboard */
+
+/* =====================================
+   TASK DASHBOARD — KANBAN LAYOUT
+   ===================================== */
+
+/* Main board */
+.task-dashboard .block-language-tasks:has(.tasks-group-heading) {
+    display: grid !important;
+
+    overflow-x: auto;
+    align-items: start;
+    padding: 12px 4px 20px;
+}
+
+/* Allow nested rendering containers to participate in grid */
+.task-dashboard .block-language-tasks > div:has(> .tasks-group-heading) {
+    display: contents;
+}
+
+/* Toolbar stays above columns */
+.task-dashboard .plugin-tasks-toolbar {
+    grid-column: 1 / -1;
+}
+
+/* Column headings */
+.task-dashboard .block-language-tasks h4.tasks-group-heading {
+    margin: 0 !important;
+
+    background: var(--background-secondary);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 10px 10px 0 0;
+
+    font-size: 14px;
+    font-weight: 600;
+    min-width: 0;
+}
+
+/* Column task lists */
+.task-dashboard .block-language-tasks ul.plugin-tasks-query-result {
+    min-width: 0;
+    min-height: 120px !important;
+
+    margin: 0 !important;
+    padding: 10px !important;
+
+    background: var(--background-secondary);
+    border: 1px solid var(--background-modifier-border);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+
+    list-style: none;
+}
+
+/* Task cards */
+.task-dashboard .plugin-tasks-query-result > li.task-list-item {
+    margin: 0 0 9px 0;
+    line-height: 1.5;
+
+    background: var(--background-primary);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 8px;
+
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    overflow-wrap: anywhere;
+}
+
+/* Highlight priority */
+.task-dashboard li[data-task-priority="highest"] {
+    border-left: 4px solid var(--color-red) !important;
+}
+
+.task-dashboard li[data-task-priority="high"] {
+    border-left: 4px solid var(--color-orange) !important;
+}
+
+.task-dashboard li[data-task-priority="medium"] {
+    border-left: 4px solid var(--color-blue) !important;
+}
+
+/* Topic tags */
+.task-dashboard .tasks-list-text a.tag {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+/* Compact date metadata */
+.task-dashboard .task-due {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* =====================================
+   FULL-WIDTH TASK DASHBOARD
+   ===================================== */
+
+/* Remove readable-line-width restriction */
+.task-dashboard .markdown-preview-sizer {
+    max-width: none !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Let the dashboard fill its pane */
+.task-dashboard .markdown-preview-section {
+    max-width: none !important;
+    width: 100% !important;
+}
+
+/* Keep long titles readable */
+.task-dashboard .tasks-list-text {
+    overflow-wrap: anywhere;
+    white-space: normal;
+}
+
+/* Compact cards */
+.task-dashboard .plugin-tasks-query-result
+> li.task-list-item {
+    margin-bottom: 8px !important;
+}
+
+/* Remove unnecessary spacing */
+.task-dashboard .block-language-tasks
+h4.tasks-group-heading {
+    padding: 10px 12px !important;
+}
+
+/* =====================================
+   FIX CHECKBOX POSITION INSIDE CARDS
+   ===================================== */
+
+/* Arrange checkbox and task content */
+.task-dashboard
+.plugin-tasks-query-result > li.task-list-item {
+    display: grid !important;
+    align-items: flex-start;
+    grid-template-columns: 18px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 10px;
+    row-gap: 4px;
+
+    padding: 12px !important;
+    margin-left: 0 !important;
+    list-style: none !important;
+}
+
+/* Keep checkbox inside the card */
+.task-dashboard
+.plugin-tasks-query-result > li.task-list-item
+> input.task-list-item-checkbox {
+    position: static !important;
+
+    margin: 3px 0 0 0 !important;
+    padding: 0 !important;
+
+    flex: 0 0 auto;
+    transform: none !important;
+}
+
+/* Task description takes remaining space */
+.task-dashboard
+.plugin-tasks-query-result > li.task-list-item
+> .tasks-list-text {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+/* =========================================
+   TWO-ROW KANBAN DASHBOARD
+   4 columns × 2 rows of deadline categories
+   ========================================= */
+
+.task-dashboard
+.block-language-tasks:has(.tasks-group-heading) {
+    display: grid !important;
+
+    grid-template-columns: repeat(4, minmax(260px, 1fr)) !important;
+
+    grid-template-rows: auto auto auto auto !important;
+
+    column-gap: 14px !important;
+    row-gap: 0 !important;
+
+    overflow-x: auto;
+    align-items: start;
+}
+
+/* First four category headings */
+.task-dashboard .block-language-tasks
+h4.tasks-group-heading:nth-of-type(-n+4) {
+    grid-row: 1 !important;
+}
+
+/* First four task lists */
+.task-dashboard .block-language-tasks
+ul.plugin-tasks-query-result:nth-of-type(-n+4) {
+    grid-row: 2 !important;
+}
+
+/* Remaining category headings */
+.task-dashboard .block-language-tasks
+h4.tasks-group-heading:nth-of-type(n+5) {
+    grid-row: 3 !important;
+    margin-top: 20px !important;
+}
+
+/* Remaining task lists */
+.task-dashboard .block-language-tasks
+ul.plugin-tasks-query-result:nth-of-type(n+5) {
+    grid-row: 4 !important;
+}
+
+/* =====================================
+   COMPACT SOURCE LINKS IN TASK CARDS
+   ===================================== */
+
+/* Source file link */
+.task-dashboard .tasks-backlink a.internal-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+/* Highlight on hover */
+.task-dashboard .tasks-backlink a.internal-link:hover {
+    color: var(--interactive-accent);
+    text-decoration: underline;
+    opacity: 1;
+}
+
+/* =====================================
+   TASK CARD: SOURCE LINK BELOW DESCRIPTION
+   ===================================== */
+
+.task-dashboard
+.plugin-tasks-query-result > li.task-list-item
+> input.task-list-item-checkbox {
+    grid-column: 1;
+    grid-row: 1;
+
+    margin: 3px 0 0 0 !important;
+}
+
+/* Task description: upper right */
+.task-dashboard
+.plugin-tasks-query-result > li.task-list-item
+> .tasks-list-text {
+    grid-column: 2;
+    grid-row: 1;
+
+    min-width: 0;
+    width: 100%;
+}
+
+/* Source link and task controls: second row */
+.task-dashboard
+.plugin-tasks-query-result > li.task-list-item
+> .task-extras {
+    grid-column: 2;
+    grid-row: 2;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    min-width: 0;
+}
+
+/* Compact backlink */
+.task-dashboard .tasks-backlink {
+    margin: 0;
+    font-size: 11px;
+}
+/* =====================================
+   CENTER ALIGN TASK CARD FOOTER
+   ===================================== */
+
+/* Footer containing link and action buttons */
+.task-dashboard .task-extras {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start;
+
+    gap: 10px;
+    min-height: 24px;
+}
+
+/* Align all three footer elements */
+.task-dashboard .tasks-backlink,
+.task-dashboard .tasks-edit,
+.task-dashboard .tasks-postpone {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center;
+
+    height: 24px;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    line-height: 1 !important;
+    vertical-align: middle !important;
+}
+
+/* Center link text */
+.task-dashboard .tasks-backlink a {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    line-height: 1;
+}
+
+/* Center icons inside buttons */
+.task-dashboard .tasks-edit svg,
+.task-dashboard .tasks-postpone svg {
+    display: block;
+}
+
+/* =========================================
+   FILTERS – MULTI-COLUMN LAYOUT
+   ========================================= */
+
+/* Arrange tags in four columns */
+.task-dashboard .task-tag-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Keep each checkbox and its label together */
+.task-dashboard .task-tag-grid > * {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+/* Medium windows */
+@media (max-width: 1100px) {
+    .task-dashboard .task-tag-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Small windows */
+@media (max-width: 600px) {
+    .task-dashboard .task-tag-grid {
+        grid-template-columns: 1fr;
+    }
+}
