@@ -421,33 +421,20 @@ For a predictable workflow, use consistent category names across the vault.
 
 After installation, verify the complete workflow.
 
-Setup verification
+###Setup verification
 
-0 / 12 verified
-
-Tasks, Meta Bind and JS Engine are installed and enabled.
-
-JavaScript execution is enabled in Tasks and Meta Bind.
-
-The dashboard contains the required frontmatter properties.
-
-The custom CSS snippet is enabled.
-
-Open tasks from different notes appear in the dashboard.
-
-Tasks are grouped into the correct deadline categories.
-
-Tag filters show only relevant categories and are sorted alphabetically.
-
-Selecting a tag filters the dashboard correctly.
-
-Reset filters clears all selections.
-
-Refresh tags discovers newly introduced task tags.
-
-Task checkboxes, editing and postponing work.
-
-Source links open the corresponding notes.
+- [ ] Tasks, Meta Bind and JS Engine are installed and enabled.
+- [ ] JavaScript execution is enabled in Tasks and Meta Bind.
+- [ ] The dashboard contains the required frontmatter properties.
+- [ ] The custom CSS snippet is enabled.
+- [ ] Open tasks from different notes appear in the dashboard.
+- [ ] Tasks are grouped into the correct deadline categories.
+- [ ] Tag filters show only relevant categories and are sorted alphabetically.
+- [ ] Selecting a tag filters the dashboard correctly.
+- [ ] Reset filters clears all selections.
+- [ ] Refresh tags discovers newly introduced task tags.
+- [ ] Task checkboxes, editing and postponing work.
+- [ ] Source links open the corresponding notes.
 
 ## 10. Linked implementation files
 
