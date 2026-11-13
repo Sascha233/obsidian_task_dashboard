@@ -6,7 +6,6 @@ focus_tags: []
 tag_refresh: 0
 ---
 ```
-
 # Task Dashboard
 
 ## Filters
