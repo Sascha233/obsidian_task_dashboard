@@ -461,8 +461,94 @@ No migration to another task-management plugin is needed. All tasks remain in th
 
 Maintenance: Keep the Tasks query, tag discovery script and CSS in your own linked implementation references. When modifying the dashboard, update the corresponding component without changing the others unnecessarily.
 
+## Daily Notes Integration
 
-## Known Errors / Troubleshooting
+### Overview
+
+The Daily Notes integration extends the Task Dashboard into a daily planning workspace. It automatically displays relevant tasks from across the Obsidian vault, organized into a priority-based Kanban layout.
+
+Each daily note contains four sections:
+
+- **Today's Tasks:** Tasks due or scheduled for the selected day. Overdue tasks are excluded and remain managed through the main Task Dashboard.
+- **Next Tasks:** Upcoming tasks due tomorrow, or tasks that have already started and have a future deadline. On Fridays, the deadline window automatically extends through Sunday of the following week.
+- **Notes:** Space for daily observations, meeting notes, and decisions.
+- **Links:** References to related Obsidian notes and documents.
+
+Both task sections are grouped by priority, from highest to lowest, and support the same dynamic tag filters as the main Task Dashboard.
+
+### Requirements
+
+The integration uses the existing dashboard plugins:
+
+| Plugin | Requirement |
+|---|---|
+| Tasks | Version 8.6.0 or compatible, with **Enable custom searches** activated |
+| Meta Bind | Installed and enabled |
+| JS Engine | Installed and enabled |
+| Daily notes | Obsidian core plugin enabled |
+| Templates | Obsidian core plugin enabled |
+
+### Setup
+
+**1. Install the template**
+
+Copy [`sample_daily_note_template.md`](./sample_daily_note_template.md) into your Obsidian vault's template folder, for example:
+
+`Templates/Daily Note Template.md`
+
+**2. Configure Daily Notes**
+
+Open **Settings → Daily notes** and configure:
+
+- **Date format:** `YYYY-MM-DD`
+- **New file location:** Your preferred daily notes folder, e.g. `Daily Notes`
+- **Template file location:** `Templates/Daily Note Template.md`
+
+Ensure the core plugins **Daily notes** and **Templates** are enabled.
+
+**3. Enable CSS styling**
+
+Copy the following files into your vault's `.obsidian/snippets/` directory:
+
+- [`task-dashboard.css`](./task-dashboard.css) — Shared task-card styling.
+- [`daily-task-dashboard.css`](./daily-task-dashboard.css) — Priority-based Kanban layout for daily notes.
+
+Enable both snippets under **Settings → Appearance → CSS snippets**.
+
+**4. Enable custom task searches**
+
+Under **Settings → Tasks → Searches**, activate **Enable custom searches**.
+
+This setting is required for the JavaScript-based date filtering, priority grouping, and dynamic tag filtering.
+
+Only enable custom searches in vaults containing trusted code.
+
+**5. Create a daily note**
+
+Use Obsidian's **Open today's daily note** command or the Daily Notes ribbon button.
+
+The template is inserted automatically when a new note is created.
+
+### Usage
+
+- **Priority columns:** Tasks are grouped from Highest/High to Medium, Normal, and Low/Lowest.
+- **Tag filters:** Select one or multiple tags to filter both task sections. Multiple selections use OR logic.
+- **Refresh tags:** Updates the available tag selections based on the vault's tasks.
+- **Reset filters:** Clears the active tag selection.
+- **Automatic date handling:** Queries use the daily note's date rather than the current system date.
+- **Live task updates:** Tasks are retrieved dynamically from across the vault. Changes to task status, dates, and priorities are reflected in the daily note.
+
+### Notes
+
+- Daily notes created before installation are not updated automatically.
+- Editing the template does not modify previously created daily notes.
+- Each daily note maintains its own tag filter selection.
+- The daily note is a live task view, not a historical snapshot of task status.
+- CSS snippets and plugin settings must be verified on each device when using multiple Obsidian installations.
+
+The main **Task Dashboard** remains the central place for overall task management and overdue tasks, while **Daily Notes** provides a focused, priority-driven daily workflow.
+
+# Known Errors / Troubleshooting
 
 ### 1. Meta Bind: Button configuration validation failed
 

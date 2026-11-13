@@ -1,0 +1,61 @@
+
+/* =====================================
+   DAILY NOTES — PRIORITY KANBAN
+   Four columns, highest to lowest
+   ===================================== */
+
+/* Full-width daily note */
+.daily-task-note .markdown-preview-sizer,
+.daily-task-note .markdown-preview-section {
+    max-width: none !important;
+    width: 100% !important;
+}
+
+/* Four priority columns */
+.daily-task-note.task-dashboard
+.block-language-tasks:has(.tasks-group-heading) {
+    display: grid !important;
+    grid-template-columns:
+        repeat(4, minmax(240px, 1fr)) !important;
+    grid-template-rows: auto auto !important;
+    column-gap: 14px !important;
+    row-gap: 0 !important;
+    overflow-x: auto !important;
+    align-items: start;
+}
+
+/* Maintain compatibility with nested
+   Tasks rendering containers */
+.daily-task-note.task-dashboard
+.block-language-tasks > div:has(> .tasks-group-heading) {
+    display: contents;
+}
+
+/* Headings occupy the first row */
+.daily-task-note.task-dashboard
+.block-language-tasks h4.tasks-group-heading {
+    grid-row: 1 !important;
+    margin-top: 0 !important;
+    min-width: 0;
+}
+
+/* Task lists occupy the second row */
+.daily-task-note.task-dashboard
+.block-language-tasks ul.plugin-tasks-query-result {
+    grid-row: 2 !important;
+    min-width: 0;
+    min-height: 100px !important;
+}
+
+/* Compact task cards */
+.daily-task-note.task-dashboard
+.plugin-tasks-query-result > li.task-list-item {
+    padding: 10px !important;
+    margin-bottom: 8px !important;
+}
+
+/* On narrow screens allow horizontal scrolling */
+.daily-task-note.task-dashboard
+.block-language-tasks {
+    scrollbar-width: thin;
+}
