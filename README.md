@@ -51,6 +51,7 @@ Configure the following:
 
 The deadline overview uses JavaScript functions to assign tasks to deadline groups.
 In the Tasks settings, locate the option controlling JavaScript execution in queries and enable it.
+**Settings → Tasks → Searches → Enable custom searches → ON**
 This is necessary because the dashboard uses functionality such as:
 
 ```
@@ -459,3 +460,60 @@ The solution deliberately separates responsibilities:
 No migration to another task-management plugin is needed. All tasks remain in their original Markdown notes, and the dashboard serves as a centralized view across the vault.
 
 Maintenance: Keep the Tasks query, tag discovery script and CSS in your own linked implementation references. When modifying the dashboard, update the corresponding component without changing the others unnecessarily.
+
+
+## Known Errors / Troubleshooting
+
+### 1. Meta Bind: Button configuration validation failed
+
+**Error message:**
+```text
+ERROR [MB_BUTTON] - The validation for the button config failed.
+Invalid input → at "action"
+```
+
+**Cause:** The Meta Bind button configuration uses an invalid syntax. Current versions expect `actions:` (plural) with a list of actions instead of `action:` (singular).
+
+**Solution:** Replace:
+```yaml
+action:
+  type: updateMetadata
+```
+
+With:
+```yaml
+actions:
+  - type: updateMetadata
+```
+
+Apply this change to both the **Refresh tags** and **Reset filters** buttons if necessary.
+
+### 2. Tasks: Unknown hide/show option
+
+**Error message:**
+```text
+Tasks query: do not understand hide/show option
+Problem line: "show group count"
+```
+
+**Cause:** The installed Obsidian Tasks plugin is outdated. The `show group count` instruction requires Tasks version **8.4.0 or later**.
+
+**Solution:**
+1. Open **Settings → Community plugins → Tasks**.
+2. Update Tasks to the latest available version.
+3. Restart or reload Obsidian.
+4. Reopen the dashboard.
+
+**Temporary workaround:** Remove `show group count` from the Tasks query under *Deadline Overview*. This removes the group counter but preserves task filtering and grouping.
+
+### General troubleshooting
+
+If the dashboard does not render correctly after installing it on another device:
+
+- Verify that **Tasks**, **Meta Bind**, and **JS Engine** are installed and enabled.
+- Update all three plugins to compatible versions.
+- Confirm that the dashboard CSS snippet is installed and enabled under **Settings → Appearance → CSS snippets**.
+- Check that the dashboard note contains the required YAML properties (`cssclasses`, `focus_tags`, `tag_refresh`).
+- Reload Obsidian after changing plugin settings.
+
+**Recommendation:** Keep plugin versions consistent across devices to avoid compatibility issues.
