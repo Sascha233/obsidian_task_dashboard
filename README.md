@@ -130,33 +130,6 @@ The `focus_tags` property must be a list.
 An empty list means that no tag filter is active.
 The `tag_refresh` value acts as a change counter. It does not need to be reset to zero after refreshing.
 
-### 3.2 Recommended note structure
-
-```
----
-cssclasses:
-  - task-dashboard
-focus_tags: []
-tag_refresh: 0
----
-
-# Task Dashboard
-
-## Filters
-
-<!-- Meta Bind button definitions / meta-bind-buttons -->
-
-`BUTTON[refresh-tags,reset-filters]`
-
-<!-- Dynamic tag filter / meta-bind-js-view -->
-
-## Deadline Overview
-
-<!-- Tasks query -->
-```
-
-The buttons and tag filter should be positioned above the deadline board.
-
 ## 4. Dynamic tag filtering
 
 The dashboard automatically discovers the available tags from open tasks.
@@ -293,24 +266,6 @@ The grouping function must assign every task to exactly one category.
 
 Important: The definition of the remaining days of the current month is separate from “Next Month.” Ensure that your linked final query specifies how those days are assigned. Do not assume the categories above are exhaustive without this rule.
 
-### 5.2 Tasks query
-
-The Tasks query is responsible for:
-
-- Retrieving open tasks throughout the vault.
-- Applying the selected tag filters.
-- Grouping tasks by due date.
-- Sorting tasks.
-- Displaying task information and controls.
-
-The query should use:
-
-```
-not done
-```
-
-The remainder of the query is maintained in the linked script.
-
 ## 6. Task cards
 
 Each task is displayed as a compact card.
@@ -342,6 +297,8 @@ Create a CSS snippet in:
 ```
 <Vault>/.obsidian/snippets/task-dashboard.css
 ```
+
+You can copy the template from this repository: [task-dashboard.css](.obsidian/snippets/task-dashboard.css)
 
 To activate it:
 
@@ -402,52 +359,6 @@ Or:
 ```
 
 The dashboard automatically discovers these tasks.
-
-### Recommended conventions
-
-| Attribute  | Convention                 |
-| ---------- | -------------------------- |
-| Task       | Standard Markdown checkbox |
-| Category   | Obsidian tag               |
-| Priority   | Tasks priority marker      |
-| Deadline   | Tasks due-date marker      |
-| Completion | Checkbox status            |
-| Source     | Original Markdown note     |
-
-A task's category can be inherited from the note's frontmatter tags, depending on the dashboard's filtering implementation.
-
-For a predictable workflow, use consistent category names across the vault.
-
-## 9. Verification checklist
-
-After installation, verify the complete workflow.
-
-###Setup verification
-
-- [ ] Tasks, Meta Bind and JS Engine are installed and enabled.
-- [ ] JavaScript execution is enabled in Tasks and Meta Bind.
-- [ ] The dashboard contains the required frontmatter properties.
-- [ ] The custom CSS snippet is enabled.
-- [ ] Open tasks from different notes appear in the dashboard.
-- [ ] Tasks are grouped into the correct deadline categories.
-- [ ] Tag filters show only relevant categories and are sorted alphabetically.
-- [ ] Selecting a tag filters the dashboard correctly.
-- [ ] Reset filters clears all selections.
-- [ ] Refresh tags discovers newly introduced task tags.
-- [ ] Task checkboxes, editing and postponing work.
-- [ ] Source links open the corresponding notes.
-
-## 10. Linked implementation files
-
-Maintain the scripts separately to simplify updates and troubleshooting.
-
-| Component              | Reference            |
-| ---------------------- | -------------------- |
-| Dashboard note         | `[[Task Dashboard]]` |
-| Tag discovery script   | Add link             |
-| Tasks deadline query   | Add link             |
-| Custom CSS             | Add link             |
-| Dashboard setup manual | This document        |
 
 ### Final architecture
 
