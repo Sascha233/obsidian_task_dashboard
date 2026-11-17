@@ -459,6 +459,12 @@ The template is inserted automatically when a new note is created.
 
 The main **Task Dashboard** remains the central place for overall task management and overdue tasks, while **Daily Notes** provides a focused, priority-driven daily workflow.
 
+# Optional Canvas connection color fix
+
+If you use the AnuPpuccin theme, this snippet restores the default connection line color in Obsidian Canvas and applies the corrected color to themed node labels and placeholders. [canvas-line-fix.css](.obsidian/snippets/canvas-line-fix.css)
+
+Copy the file into your vault's `.obsidian/snippets/` folder, refresh the list under **Settings → Appearance → CSS snippets**, and enable `canvas-line-fix`.
+
 # Known Errors / Troubleshooting
 
 ### 1. Meta Bind: Button configuration validation failed
