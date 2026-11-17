@@ -1,0 +1,11 @@
+/* Repair default Canvas connection colors in AnuPpuccin */
+body.theme-dark.theme-dark,
+body.theme-light.theme-light {
+  --canvas-color: rgb(var(--ctp-overlay0)) !important;
+}
+
+/* Adapt labels to the corrected color format */
+.canvas-node.is-themed .canvas-node-label,
+.canvas-node-placeholder {
+  color: var(--canvas-color);
+}
